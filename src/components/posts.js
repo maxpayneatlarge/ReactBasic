@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../App.css';
 
 class Posts extends Component {
     constructor(){
@@ -83,21 +84,26 @@ class Posts extends Component {
         const {posts} = this.state;
         const {users} = this.state;
           return(
-                <div>
-                  {posts.map(post =>
+              <div>
+                <div className="header">Test Header
+                </div>
+                <div className="body">
+                    
+                {posts.map(post =>
                     <div key={post.id}>
-                       
+                    
                         {post.title}
                     </div>
                     )}
 
                     {users.map(user =>
                     <div key={user.id}>
-                       
+                    
                         {user.name}
                     </div>
                     )}  
                 </div>
+            </div>
           );
       }
 }

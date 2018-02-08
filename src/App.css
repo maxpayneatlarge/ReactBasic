@@ -22,6 +22,19 @@
   font-size: large;
 }
 
+.header{
+  text-align: center;
+  font-size: 28pt;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  height: 80px;
+}
+
+body{
+  text-align: center;
+  text-decoration-color: 'black';
+  background-color: antiquewhite;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
