@@ -9,8 +9,7 @@ class Posts extends Component {
         }
       }
     async componentDidMount(){
-        this.getUsers();
-        this.getPosts();
+        this.getUsers(this.getPosts);
 
     }
 
@@ -20,24 +19,24 @@ class Posts extends Component {
             const postData = await resp.json();
 
             await postData.map( (object) => {
-                
                 object.name = this.state.users[object.userId].name;
                 console.log(JSON.stringify(object));
                 return object;
             });
 
             //const posts = processUsers(postData);
-            await this.setState({posts: postData});
+            this.setState({posts: postData});
         }catch(error){
             console.log("Error getting Posts: "+error);
         }
     }
 
-    async getUsers(){
+    async getUsers(cb){
         const resp = await fetch("https://jsonplaceholder.typicode.com/users");
         const usersData = await resp.json();
 
-        await this.setState({users: usersData});
+        this.setState({users: usersData});
+        cb();
     }
 
     // async getUserData(id){
