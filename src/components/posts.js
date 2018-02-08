@@ -18,9 +18,14 @@ class Posts extends Component {
         try{
             const resp  = await fetch('https://jsonplaceholder.typicode.com/posts');
             const postData = await resp.json();
+            const {users} = this.state;
 
-            await postData.map( (object) => {
-                object.name = this.state.users[object.userId].name;
+            postData.map( (object) => {
+                users.forEach(user => {
+                    if(user.id === object.userId){
+                        object.name = user.name;
+                    }
+                });
                 console.log(JSON.stringify(object));
                 return object;
             });
