@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../App.css';
+import {Link} from 'react-router-dom';
 
 class Posts extends Component {
     
@@ -21,7 +22,7 @@ class Posts extends Component {
             <tbody>
             {posts.map(post =>
                 <tr key={post.id}>
-                    <td className="leftAlign"><span className="link" onClick={(e) => this.showPost(post.id, e)}>{post.title}</span></td><td className="leftAlign">{post.userName}</td><td className="leftAlign">{post.userWebsite}</td><td className="rightAlign">{post.userPhone}</td><td className="leftAlign">{post.userCompanyName}</td>
+                    <td className="leftAlign"><Link className="link" to={'/post/'+post.id}>{post.title}</Link></td><td className="leftAlign">{post.userName}</td><td className="leftAlign">{post.userWebsite}</td><td className="rightAlign">{post.userPhone}</td><td className="leftAlign">{post.userCompanyName}</td>
                 </tr>
                 )}
                 </tbody>
