@@ -14,19 +14,20 @@ class Posts extends Component {
 
     }
 
-    async getPosts(){
+    getPosts = async() => {
         try{
             const resp  = await fetch('https://jsonplaceholder.typicode.com/posts');
             const postData = await resp.json();
-            const {users} = this.state;
 
             postData.map( (object) => {
-                users.forEach(user => {
+                this.state.users.forEach(user => {
                     if(user.id === object.userId){
-                        object.name = user.name;
+                        object.userName = user.name;
+                        object.userWebsite = user.website;
+                        object.userPhone = user.phone;
+                        object.userCompanyName = user.company.name;
                     }
                 });
-                console.log(JSON.stringify(object));
                 return object;
             });
 
@@ -37,7 +38,7 @@ class Posts extends Component {
         }
     }
 
-    async getUsers(cb){
+    getUsers = async(cb) => {
         const resp = await fetch("https://jsonplaceholder.typicode.com/users");
         const usersData = await resp.json();
 
@@ -45,68 +46,25 @@ class Posts extends Component {
         cb();
     }
 
-    // async getUserData(id){
-    //     const uri = "https://jsonplaceholder.typicode.com/users?id=" + userId;
-    //     var resp = await fetch(uri);
-
-    // }
-    // async function getPosts() {
-    //     try {
-    //         var resp = await fetch('https://jsonplaceholder.typicode.com/posts')
-    //         var posts = await resp.json()
-    //         //processUsers(posts)
-    //     } catch (error) {
-    //         console.log("error->" + error)
-    //     }
-    // }
-    //   async function processUsers(posts) {
-    //     var users = {}
-    //     try {
-    //       for (var i = 0; i < posts.length; i++) {
-    //         var post = posts[i]
-    //         var userId = post.userId
-    //         var user = null
-    //         if (users[userId]) {
-    //           user = users[userId]
-    //         } else {
-    //           var userUri = "https://jsonplaceholder.typicode.com/users?id=" + userId
-    //           var resp2 = await fetch(userUri)
-    //           user = await resp2.json()
-    //           users[userId] = user
-    //         }
-    //         document.write("post: " + JSON.stringify(post))
-    //         document.write("<br/><br/>")
-    //         document.write("user:" + JSON.stringify(user))
-    //         document.write("<br/><hr/><br/>")
-    //       }
-    //     } catch (error) {
-    //       console.log("error")
-    //     }
-    //   }
-    //   getPosts()
-
       render() {
         const {posts} = this.state;
-        const {users} = this.state;
           return(
               <div>
-                <div className="header">Test Header
-                </div>
                 <div className="body">
-                    
+                <table>
+                    <thead className="headerRow">
+                        <tr>
+                            <td>Post Title</td><td>Posted By</td><td>Poster's Website</td><td>Poster's Phone Number</td><td>Poster's Company</td>
+                        </tr>
+                    </thead>
+                <tbody>
                 {posts.map(post =>
-                    <div key={post.id}>
-                    
-                        {post.title}
-                    </div>
+                    <tr key={post.id}>
+                        <td>{post.title}</td><td>{post.userName}</td><td>{post.userWebsite}</td><td>{post.userPhone}</td><td>{post.userCompanyName}</td>
+                    </tr>
                     )}
-
-                    {users.map(user =>
-                    <div key={user.id}>
-                    
-                        {user.name}
-                    </div>
-                    )}  
+                    </tbody>
+                </table> 
                 </div>
             </div>
           );

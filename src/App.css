@@ -29,10 +29,39 @@
   height: 80px;
 }
 
+.footer{
+  text-align: center;
+  margin-top: 30px;
+}
+
+.copyright{
+  text-align: center;
+  font-size: 8pt;
+}
+
+.entry{
+  padding-bottom: 10px;
+}
+
+.headerRow{
+  font-weight: bold;
+}
+table{
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td{
+  border: 1px solid black;
+  
+}
+
 body{
   text-align: center;
   text-decoration-color: 'black';
   background-color: antiquewhite;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 @keyframes App-logo-spin {
