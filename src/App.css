@@ -45,6 +45,7 @@
 
 .headerRow{
   font-weight: bold;
+  font-size: 14pt;
 }
 table{
   border-collapse: collapse;
@@ -53,7 +54,15 @@ table{
 
 td{
   border: 1px solid black;
-  
+  padding-right: 10px;
+}
+
+td.leftAlign{
+  text-align: left;
+}
+
+td.rightAlign{
+  text-align: right;
 }
 
 body{
