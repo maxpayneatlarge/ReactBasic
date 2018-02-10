@@ -22,6 +22,7 @@ class SelectedPost extends Component{
 
     render(){
         const {activePost} = this.props;
+        const {comments} = this.state;
         return(
             <div className="postInfo">
                 <h3 className="centered">Post Details</h3>
@@ -46,6 +47,22 @@ class SelectedPost extends Component{
                     <tr>
                         <td className="selectedPostHeaderCell noborder">User Website:  </td>
                         <td className="noborder">{activePost.userWebsite}</td>
+                    </tr>
+                    <tr>
+                        <td className="selectedPostHeaderCell noborder">Comments:  </td>
+                        <td className="noborder">
+                            <table>
+                                <tbody>
+                                    {comments.map(comment =>
+                                        <tr key={comment.id}>
+                                            <td className="noborder">{comment.body}<br />
+                                            </td>
+                                        </tr>
+                                    )}
+                                    
+                                </tbody>
+                            </table>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
