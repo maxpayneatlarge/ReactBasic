@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import '../App.css';
-import SelectedPost from './selectedpost';
 
 class Posts extends Component {
-    
+    componentDidMount(){
+
+    }
     showPost(id){
         console.log("showPostWasClicked, id: "+id);
-        this.props.navigate()
+        this.props.setActivePost(id);
+        
     }
+
 
     render() {
     const {posts} = this.props;

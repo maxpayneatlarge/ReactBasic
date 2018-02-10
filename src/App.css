@@ -57,3 +57,21 @@ body{
   margin-left: 10px;
   margin-right: 10px;
 }
+
+.postInfo{
+  text-align: left;
+}
+
+.selectedPostHeaderCell{
+  font-weight: bold;
+  width: 120px;
+  padding: 10px 20px 10px 20px;
+}
+
+.centered{
+  text-align: center;
+}
+
+td.noborder{
+  border: 0px;
+}

@@ -11,7 +11,8 @@ class App extends Component {
     this.state = {
       users: [],
       posts: [],
-      view: ""
+      view: "posts", 
+      activePost: {}
     }
   }
   
@@ -19,13 +20,12 @@ class App extends Component {
       this.getUsers(this.getPosts);    
   }
 
-  navigate = (view, selected) =>{
-    if(view === 'posts'){
-        this.setState({view: <Posts posts={this.state.posts}/>});
-    } else if(view==='selectedpost'){
-        this.setState({view: <SelectedPost posts={this.state.posts} selection={selected} />});
+  navigate = (selectedView) =>{
+    if(selectedView === 'selectedPost'){
+      this.setState({view: "selectedPost"});
     }
   }
+  
 
   getPosts = async() => {
       try{
@@ -44,7 +44,6 @@ class App extends Component {
               return object;
           });
           this.setState({posts: postData});
-          this.setState({view: <Posts posts={this.state.posts} state={this.state} />});
       }catch(error){
           console.log("Error getting Posts: "+error);
       }
@@ -57,11 +56,21 @@ class App extends Component {
       cb();
   }
 
+  setActivePost = (id) =>{
+    this.state.posts.forEach(post => {
+      if(post.id === id){
+        this.setState({activePost: post});
+      }
+    });
+    this.navigate('selectedPost');
+  }
+
   render() {
     return (
       <div>
         <Header />
-        {this.state.view}
+        {this.state.view === 'posts' && <Posts posts={this.state.posts} setActivePost = {this.setActivePost}/>}
+        {this.state.view === 'selectedPost' && <SelectedPost activePost={this.state.activePost} />}
         <Footer />
       </div>
     );
