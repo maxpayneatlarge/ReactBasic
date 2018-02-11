@@ -8,10 +8,7 @@ class SelectedPost extends Component{
         }
     }
     async componentDidMount(){  
-        console.log(this.props);
         await this.getComments();
-        console.log(this.state.comments);
-
     }
 
     getComments = async () => {
@@ -20,12 +17,17 @@ class SelectedPost extends Component{
         this.setState({comments: commentData});
     }
 
+    showAlbums = (id, name) =>{
+        this.props.setSelectedUser(id, name);
+    }
+
     render(){
         const {activePost} = this.props;
         const {comments} = this.state;
         return(
             <div className="postInfo">
                 <h3 className="centered">Post Details</h3>
+                <br />
                 <table>
                     <tbody>
                     <tr>
@@ -38,7 +40,7 @@ class SelectedPost extends Component{
                     </tr>
                     <tr>
                         <td className="selectedPostHeaderCell noborder">User Name: </td>
-                        <td className="noborder">{activePost.userName}</td>
+                        <td className="noborder"><span className="link" onClick={() => this.showAlbums(activePost.userId, activePost.userName)}>{activePost.userName}</span></td>
                     </tr>
                     <tr>
                         <td className="selectedPostHeaderCell noborder">User Company:  </td>
@@ -55,7 +57,9 @@ class SelectedPost extends Component{
                                 <tbody>
                                     {comments.map(comment =>
                                         <tr key={comment.id}>
-                                            <td className="noborder">{comment.body}<br />
+                                            <td className="noborder borderBottom">{comment.body}<br />
+                                            <span className="commentByLine">By: {comment.email}</span>
+                                            
                                             </td>
                                         </tr>
                                     )}

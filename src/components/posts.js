@@ -6,7 +6,6 @@ class Posts extends Component {
 
     }
     showPost(id){
-        console.log("showPostWasClicked, id: "+id);
         this.props.setActivePost(id);
         
     }
