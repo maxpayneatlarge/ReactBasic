@@ -25,7 +25,7 @@ class Posts extends Component {
             <tbody>
             {posts.map(post =>
                 <tr key={post.id}>
-                    <td className="leftAlign"><span className="link" onClick={(e) => this.showPost(post.id, e)}>{post.title}</span></td><td className="leftAlign">{post.userName}</td><td className="leftAlign">{post.userWebsite}</td><td className="rightAlign">{post.userPhone}</td><td className="leftAlign">{post.userCompanyName}</td>
+                    <td className="leftAlign"><span className="link" onClick={() => this.showPost(post.id)}>{post.title}</span></td><td className="leftAlign">{post.userName}</td><td className="leftAlign">{post.userWebsite}</td><td className="rightAlign">{post.userPhone}</td><td className="leftAlign">{post.userCompanyName}</td>
                 </tr>
                 )}
                 </tbody>
