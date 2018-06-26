@@ -7,6 +7,8 @@ import SelectedPost from './components/selectedpost';
 import Links from './components/links';
 import UserAlbums from './components/useralbums';
 import Photos from './components/photos';
+import './/redux/reducers/reducer';
+import NetworkService from './components/networkservice';
 
 class App extends Component {
   constructor(){
@@ -39,29 +41,28 @@ class App extends Component {
     }
 
   }
-  
 
   getPosts = async() => {
-      try{
-          const resp  = await fetch('https://jsonplaceholder.typicode.com/posts');
-          const postData = await resp.json();
+    try{
+        const resp  = await fetch('https://jsonplaceholder.typicode.com/posts');
+        const postData = await resp.json();
 
-          postData.map( (object) => {
-              this.state.users.forEach(user => {
-                  if(user.id === object.userId){
-                      object.userName = user.name;
-                      object.userWebsite = user.website;
-                      object.userPhone = user.phone;
-                      object.userCompanyName = user.company.name;
-                  }
-              });
-              return object;
-          });
-          this.setState({posts: postData});
-      }catch(error){
-          console.log("Error getting Posts: "+error);
-      }
-  }
+        postData.map( (object) => {
+            this.state.users.forEach(user => {
+                if(user.id === object.userId){
+                    object.userName = user.name;
+                    object.userWebsite = user.website;
+                    object.userPhone = user.phone;
+                    object.userCompanyName = user.company.name;
+                }
+            });
+            return object;
+        });
+        this.setState({posts: postData});
+    }catch(error){
+        console.log("Error getting Posts: "+error);
+    }
+}
 
   getUsers = async(cb) => {
       const resp = await fetch("https://jsonplaceholder.typicode.com/users");
